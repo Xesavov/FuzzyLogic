@@ -105,14 +105,14 @@ public class Init {
         paramsIn.add(i3);
         Param i4 = new Param("Срок кредита",
                 new Term("Краткосрочный", 0d, 1d, 1d, 1d, 2d, 1d, 3d, 0d),
-                new Term("Средний", 1d, 0d, 3d, 1d, 4d, 1d, 5d, 0d),
+                new Term("Средний", 2d, 0d, 3d, 1d, 4d, 1d, 5d, 0d),
                 new Term("Длительный", 3d, 0d, 6d, 1d, 8d, 1d, 10d, 1d)
         );
         paramsIn.add(i4);
         Param o1 = new Param("Рейтинг",
-                new Term("Низкий - КРЕДИТ НЕ ДАВАТЬ", 0d, 0d, 1d, 1d, 2d, 1d, 3d, 0d),
-                new Term("Средний - Можно дать денег", 2d, 0d, 3d, 1d, 4d, 1d, 5d, 0d),
-                new Term("Высокий - Точно вернет!", 4d, 0d, 6d, 1d, 8d, 1d, 10d, 1d)
+                new Term("Низкий", 0d, 0d, 1d, 1d, 2d, 1d, 3d, 0d),
+                new Term("Средний", 2d, 0d, 3d, 1d, 4d, 1d, 5d, 0d),
+                new Term("Высокий", 4d, 0d, 6d, 1d, 8d, 1d, 10d, 1d)
         );
         paramsOut.add(o1);
     }
