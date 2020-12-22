@@ -9,7 +9,7 @@ public class Init {
     private static List<Rule> rules;
 
     public static void init() {
-        //initParamsTriangle();
+//        initParamsTriangle();
         initParamsTrapetz();
         initRules();
         boolean f = false;
@@ -51,9 +51,9 @@ public class Init {
     );
         paramsIn.add(i4);
     Param o1 = new Param("Рейтинг",
-            new Term("Низкий - КРЕДИТ НЕ ДАВАТЬ", 0d, 0d, 3d, 1d, 5d, 0d),
-            new Term("Средний - Можно дать денег", 3d, 0d, 5d, 1d, 7d, 0d),
-            new Term("Высокий - Точно вернет!", 5d, 0d, 7d, 1d, 10d, 0d)
+            new Term("Низкий", 0d, 0d, 3d, 1d, 5d, 0d),
+            new Term("Средний", 3d, 0d, 5d, 1d, 7d, 0d),
+            new Term("Высокий", 5d, 0d, 7d, 1d, 10d, 0d)
     );
         paramsOut.add(o1);
     }
@@ -86,15 +86,15 @@ public class Init {
         paramsIn = new ArrayList<>();
         paramsOut = new ArrayList<>();
         Param i1 = new Param("Текущая ЗП",
-                new Term("Низкая", 0d, 0d, 10d, 1d, 30d, 1d, 50d, 0d),
+                new Term("Низкая", 0d, 0d, 10d, 1d, 30d, 1d, 40d, 0d),
                 new Term("Средняя", 20d, 0d, 40d, 1d, 60d, 1d, 80d, 0d),
-                new Term("Высокая", 50d, 0d, 80d, 1d, 120d, 1d, 150d, 1d)
+                new Term("Высокая", 60d, 0d, 80d, 1d, 120d, 1d, 150d, 1d)
         );
         paramsIn.add(i1);
         Param i2 = new Param("Стаж работы",
                 new Term("Малый", 0d, 1d, 1d, 1d, 2d, 1d, 3d, 0d),
                 new Term("Средний", 1d, 0d, 3d, 1d, 4d, 1d, 5d, 0d),
-                new Term("Большой", 3d, 0d, 6d, 1d, 8d, 1d, 10d, 1d)
+                new Term("Большой", 4d, 0d, 6d, 1d, 8d, 1d, 10d, 1d)
         );
         paramsIn.add(i2);
         Param i3 = new Param("Платеж по кредиту",
@@ -119,6 +119,14 @@ public class Init {
 
     public static void initRules() {
         rules = new ArrayList<>();
+
+        rules.add(new Rule(
+                new Alt("Рейтинг", "Средний"),
+                new Alt("Текущая ЗП", "Высокая"),
+                new Alt("Стаж работы", "Большой"),
+                new Alt("Платеж по кредиту", "Высокий"),
+                new Alt("Срок кредита", "Длительный")
+        ));
 
         rules.add(new Rule(
                 new Alt("Рейтинг", "Средний"),
@@ -316,13 +324,13 @@ public class Init {
                 new Alt("Платеж по кредиту", "Низкий"),
                 new Alt("Срок кредита", "Краткосрочный")
         ));
-        rules.add(new Rule(
-                new Alt("Рейтинг", "Средний"),
-                new Alt("Текущая ЗП", "Средняя"),
-                new Alt("Стаж работы", "Малый"),
-                new Alt("Платеж по кредиту", "Низкий"),
-                new Alt("Срок кредита", "Длительный")
-        ));
+//        rules.add(new Rule(
+//                new Alt("Рейтинг", "Средний"),
+//                new Alt("Текущая ЗП", "Средняя"),
+//                new Alt("Стаж работы", "Малый"),
+//                new Alt("Платеж по кредиту", "Низкий"),
+//                new Alt("Срок кредита", "Длительный") //ТУТ КОСЯК?
+//        ));
         rules.add(new Rule(
                 new Alt("Рейтинг", "Низкий"),
                 new Alt("Текущая ЗП", "Низкая"),
@@ -394,6 +402,19 @@ public class Init {
                 new Alt("Стаж работы", "Малый"),
                 new Alt("Платеж по кредиту", "Низкий"),
                 new Alt("Срок кредита", "Краткосрочный")
+        ));
+        rules.add(new Rule(
+                new Alt("Рейтинг", "Высокий"),
+                new Alt("Текущая ЗП", "Средняя"),
+                new Alt("Стаж работы", "Средний"),
+                new Alt("Платеж по кредиту", "Низкий"),
+                new Alt("Срок кредита", "Краткосрочный")
+        ));
+        rules.add(new Rule(
+                new Alt("Рейтинг", "Высокий"),
+                new Alt("Текущая ЗП", "Высокая"),
+                new Alt("Стаж работы", "Большой"),
+                new Alt("Платеж по кредиту", "Средний")
         ));
 
         System.out.println("Все правила:");
